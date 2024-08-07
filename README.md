@@ -1,8 +1,15 @@
-# React + Vite
+# Odin Project - Memory Card
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Who am I? What is this?
 
-Currently, two official plugins are available:
+Hello, my name is Joviscab and this is part of my learning to code journey!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is called Memory Card and is part of the Javascript Course of The Odin Project. The idea of this project is to put to practice all the React knowledge that I have acquired until now. In this project I am going to build a memory game, following the instructions of Odin's lesson! The idea is to make a Pokemon card memory game, I hope Nintendo does not prosecute me lol.
+
+## Skills
+
+With this project my idea is to check the React skills that I have learned until now, as well as using it as an exercise to remember all the lessons until this point.
+
+## If you are reading this
+
+Thank you for your interest! Learning React! It is august already and I'm still here!
