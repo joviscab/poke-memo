@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import pokeCardBack from "../img/poke-card-back.png";
 import "../styles/App.css";
 
-const ImageFetcher = () => {
+const Card = ({ onScoreUpdate, onGameReset, trackClickedCards }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [allImageUrls, setAllImageUrls] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ const ImageFetcher = () => {
   useEffect(() => {
     const fetchCardImages = async () => {
       try {
-        const cachedImageUrls = localStorage.getItem("cardImages");
+        const cachedImageUrls = localStorage.getItem("original151CardImages");
 
         if (cachedImageUrls) {
           const imageUrlsArray = JSON.parse(cachedImageUrls);
@@ -24,7 +24,7 @@ const ImageFetcher = () => {
           setLoading(false);
         } else {
           const response = await fetch(
-            "https://api.pokemontcg.io/v2/cards?pageSize=100",
+            "https://api.pokemontcg.io/v2/cards?pageSize=1000", // Fetch a large number of cards
             {
               headers: {
                 "X-Api-Key": API_KEY,
@@ -35,9 +35,20 @@ const ImageFetcher = () => {
             throw new Error(`Error fetching cards: ${response.statusText}`);
           }
           const data = await response.json();
-          const imageUrlsArray = data.data.map((card) => card.images.large);
+          const original151Cards = data.data.filter((card) =>
+            card.nationalPokedexNumbers.some(
+              (number) => number >= 1 && number <= 151
+            )
+          );
 
-          localStorage.setItem("cardImages", JSON.stringify(imageUrlsArray));
+          const imageUrlsArray = original151Cards.map(
+            (card) => card.images.large
+          );
+
+          localStorage.setItem(
+            "original151CardImages",
+            JSON.stringify(imageUrlsArray)
+          );
           setAllImageUrls(imageUrlsArray);
 
           const randomImageUrls = getRandomSubset(imageUrlsArray, 10);
@@ -70,12 +81,18 @@ const ImageFetcher = () => {
     return shuffled.slice(min);
   };
 
-  // Function to handle card clicks
-  const handleCardClick = (index) => {
-    const newImage = getRandomSubset(allImageUrls, 1)[0];
-    setImageUrls((prevImageUrls) =>
-      prevImageUrls.map((url, i) => (i === index ? newImage : url))
-    );
+  const handleCardClick = (index, url) => {
+    if (trackClickedCards(url)) {
+      onGameReset(); // Reset the score
+    } else {
+      onScoreUpdate(1); // Increment the score by 1
+      const newImage = getRandomSubset(allImageUrls, 1)[0];
+      setImageUrls((prevImageUrls) =>
+        prevImageUrls.map((currentUrl, i) =>
+          i === index ? newImage : currentUrl
+        )
+      );
+    }
   };
 
   if (loading) {
@@ -96,7 +113,7 @@ const ImageFetcher = () => {
                 className="poke-card"
                 src={url}
                 alt={`Fetched from API ${index}`}
-                onClick={() => handleCardClick(index)}
+                onClick={() => handleCardClick(index, url)}
               />
             </div>
             <div className="flip-card-back">
@@ -109,4 +126,4 @@ const ImageFetcher = () => {
   );
 };
 
-export default ImageFetcher;
+export default Card;

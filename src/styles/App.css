@@ -72,3 +72,15 @@
 .flip-card:active .flip-card-inner {
   border: 2px solid green;
 }
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.current-score,
+.best-score {
+  font-size: 0.8em;
+  margin-left: 20px;
+}
