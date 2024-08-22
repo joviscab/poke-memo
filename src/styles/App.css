@@ -16,9 +16,11 @@
 }
 
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 220px);
+  grid-gap: 20px;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .flip-card {

@@ -22,8 +22,8 @@ function App() {
       <header className="App-header">
         <h1>Poke-memo!</h1>
         <div className="scoreboard">
-          <p>Current Score: {score}</p>
-          <p>Best Score: {bestScore}</p>
+          <p className="current-score">Current Score: {score}</p>
+          <p className="best-score">Best Score: {bestScore}</p>
         </div>
         <Card onScoreUpdate={handleScoreUpdate} onGameReset={handleGameReset} />
       </header>
