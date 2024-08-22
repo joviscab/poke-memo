@@ -116,6 +116,35 @@
   color: black;
   font-weight: 200;
   font-family: "PokeGB";
-  font-size: 0.7em;
+  font-size: 0.6em;
   padding-bottom: 20px;
+}
+
+footer {
+  background-image: url(../img/grass.jpg);
+}
+
+footer,
+footer > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  margin: 0;
+  font-family: "PokeGB";
+  font-weight: 100;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: #d62d20;
+  text-decoration: underline;
 }

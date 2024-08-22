@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/App.css";
 import Card from "./Card";
+import Footer from "./Footer";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -31,6 +32,7 @@ function App() {
         </div>
         <Card onScoreUpdate={handleScoreUpdate} onGameReset={handleGameReset} />
       </header>
+      <Footer />
     </div>
   );
 }
