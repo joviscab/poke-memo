@@ -6,6 +6,7 @@
 
 .App-header {
   background-color: #282c34;
+  background-image: url(../img/grass.jpg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -85,4 +86,12 @@
 .best-score {
   font-size: 0.8em;
   margin-left: 20px;
+}
+
+.app-title {
+  margin: 0;
+}
+
+.app-sub-title {
+  margin: 0;
 }

@@ -20,7 +20,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Poke-memo!</h1>
+        <h1 className="app-title">Poke-memo!</h1>
+        <h5 className="app-sub-title">
+          Earn points by clicking each image only once! Try to remember which
+          cards you've already clicked to avoid duplicates.
+        </h5>
         <div className="scoreboard">
           <p className="current-score">Current Score: {score}</p>
           <p className="best-score">Best Score: {bestScore}</p>
