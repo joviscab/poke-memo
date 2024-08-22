@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import pokeCardBack from "../img/poke-card-back.png";
 import "../styles/App.css";
 
-// List of Base Series card IDs
 const baseSeriesCardIds = [
   "base1-44",
   "base1-46",
@@ -39,7 +38,6 @@ const Card = ({ onScoreUpdate, onGameReset }) => {
   useEffect(() => {
     const fetchCardImages = async () => {
       try {
-        // Function to fetch individual card image
         const fetchCardImage = async (id) => {
           try {
             const response = await fetch(
@@ -59,17 +57,15 @@ const Card = ({ onScoreUpdate, onGameReset }) => {
             return data.data.images.large;
           } catch (error) {
             console.error(error);
-            return null; // Return null if there was an error fetching the image
+            return null;
           }
         };
 
-        // Fetch all Base Series card images
         const imageUrlsArray = await Promise.all(
           baseSeriesCardIds.map((id) => fetchCardImage(id))
         );
-        const validImageUrls = imageUrlsArray.filter((url) => url !== null); // Filter out any null values
+        const validImageUrls = imageUrlsArray.filter((url) => url !== null);
 
-        // Shuffle and select a subset of image URLs for the game
         const initialImageUrls = getRandomSubset(validImageUrls, 8);
         setAllImageUrls(validImageUrls);
         setImageUrls(initialImageUrls);
@@ -109,9 +105,8 @@ const Card = ({ onScoreUpdate, onGameReset }) => {
       setClickedCards((prev) => [...prev, clickedUrl]);
       onScoreUpdate();
 
-      // Fetch new images for all cards
       try {
-        const newImageUrls = getRandomSubset(allImageUrls, 8); // Fetch new images
+        const newImageUrls = getRandomSubset(allImageUrls, 8);
         setImageUrls(newImageUrls);
       } catch (error) {
         console.error("Error updating card images:", error);
